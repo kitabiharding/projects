@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="WPFnotes.HomePage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPFnotes"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="900" Loaded="UserControl_Loaded"
+             Background="#FAFAFA">
+    <TabControl x:Name="Home" FontFamily="Times New Roman" FontSize="16">
+        <TabItem Header="Заметки">
+            <Grid Background="#FAFAFA">
+                <DataGrid x:Name="dgNotes" IsReadOnly="True" CanUserResizeColumns="False" AutoGenerateColumns="False" VerticalAlignment="Top" Height="380" FontWeight="Bold" SelectionChanged="dgNotes_SelectionChanged">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Path = CreationDate}" Header="Время изменения" Width="180"  FontWeight="Normal"></DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding Path = NameNote}" Header="Название" Width="*" FontWeight="Normal">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding Path = TagsNote}" Header="Тег" Width="200" FontWeight="Normal">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button x:Name="CreateNote" Content="Создать заметку" VerticalAlignment="Bottom" Margin="10" FontSize="20" FontWeight="Bold" Foreground="White" Width="200" Height="30" Background="#1F50AD" Click="CreateNote_Click"/>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Напоминания">
+            <Grid Background="#FAFAFA">
+                <DataGrid x:Name="dgPrompts" IsReadOnly="True" CanUserResizeColumns="False" AutoGenerateColumns="False" VerticalAlignment="Top" Height="380" FontWeight="Bold" SelectionChanged="dgPrompt_SelectionChanged">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Path = CreationDate}" Header="Время создания" Width="180"  FontWeight="Normal"></DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding Path = ExpirationDate}" Header="Время окончания" Width="180"  FontWeight="Normal"></DataGridTextColumn>
+                        <DataGridCheckBoxColumn Binding="{Binding Path = Push}" Header="Push" Width="50"></DataGridCheckBoxColumn>
+                        <DataGridTextColumn Binding="{Binding Path = TextPrompt}" Header="Напоминание" Width="*" FontWeight="Normal">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding Path = TagsPrompt}" Header="Тег" Width="200" FontWeight="Normal">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button x:Name="CreatePrompt" Content="Поставить напоминание" VerticalAlignment="Bottom" Margin="10" FontSize="20" FontWeight="Bold" Foreground="White" Width="250" Height="30" Background="#1F50AD" Click="CreatePrompt_Click"/>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Теги">
+            <Grid Background="#FAFAFA">
+                <DataGrid x:Name="dgTags" IsReadOnly="True" CanUserResizeColumns="False" AutoGenerateColumns="False" VerticalAlignment="Top" Height="380" FontWeight="Bold" SelectionChanged="dgTags_SelectionChanged">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Path = NameTags}" Header="Список тегов" Width="*" FontWeight="Normal">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button x:Name="CreateTags" Content="Добавить тег" VerticalAlignment="Bottom" Margin="10" FontSize="20" FontWeight="Bold" Foreground="White" Width="200" Height="30" Background="#1F50AD" Click="CreateTags_Click"/>
+            </Grid>
+        </TabItem>
+    </TabControl>
+</UserControl>
